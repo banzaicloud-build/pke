@@ -47,12 +47,12 @@ pipelineConfig:
             # sequential or parallel stages, their children inherit the parent's agent, options,
             # and environment.
             # options on a stage currently only can contain containerOptions.
-            # options:
-              # containerOptions:
-              #   resources:
-              #     limits:
-              #       cpu: 0.4
-              #       memory: 256Mi
+            options:
+              containerOptions:
+                resources:
+                  limits:
+#                    cpu: 0.4
+                    memory: 2Gi
             # A stage must contain at least one of "steps", "stages", or "parallel"
             # Steps must contain at least one command to be executed or a loop.
             environment:
