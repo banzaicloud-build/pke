@@ -1,21 +1,12 @@
 pipelineConfig:
-  extends:
-    import: classic
-    file: go/pipeline.yaml
   pipelines:
     pullRequest:
-        build:
-          steps:
-          - sh: export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml
-            name: container-build
-        postBuild:
-          steps:
-          - sh: echo "post"
-            name: post-build
-    release:
-        build:
-          steps:
-          - sh: export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml
-            name: container-build
-          - sh: echo "post release"
-            name: post-build
+      pipeline:
+        agent:
+          image: golang:1.12
+        stages:
+          - name: Test
+            steps:
+              - command: ls
+                args:
+                  - '-lha'
