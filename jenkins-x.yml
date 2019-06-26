@@ -1,13 +1,35 @@
+# If a build pack is specified, the `pipeline` in `release`, `pullRequest`, and `feature` will be ignored.
 buildPack: none
 
 pipelineConfig:
   pipelines:
-    pullRequest:
+    release:
+    # While the legacy build pack built-in stages can be used in jenkins-x.yaml, pipeline is preferred.
       pipeline:
+        # Define a default container image we'll use throughout the pipeline, unless an explicit agent is
+        # specified on a stage or step.
         agent:
-          image: golang:1.12
-        stages:
-          - name: Test
+          image: "golang" # or "maven" - this means "use the maven pod template"
+        # Environment variables are either static key/value pairs or Kubernetes valueFrom EnvVarSources.
+        # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.14/#envvarsource-v1-core
+        # for more information on valueFrom.
+        # Environment variables defined at the top level can be overridden in stages and individual
+        # steps.
+
+      stages:
+          - name: testecske
+            # agent, options, and environment are valid on stages as well. For the parents of nested
+            # sequential or parallel stages, their children inherit the parent's agent, options,
+            # and environment.
+            # options on a stage currently only can contain containerOptions.
+            options:
+              containerOptions:
+                resources:
+                  limits:
+                    cpu: 0.4
+                    memory: 256Mi
+            # A stage must contain at least one of "steps", "stages", or "parallel"
+            # Steps must contain at least one command to be executed or a loop.
             steps:
               - command: ls
                 args:
