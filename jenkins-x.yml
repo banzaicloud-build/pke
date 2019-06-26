@@ -1,8 +1,1 @@
-buildPack: none
-
-pipelineConfig:
-  pipelines:
-    release:
-      build:
-        steps:
-        - command: ls -la
+buildPack: go
