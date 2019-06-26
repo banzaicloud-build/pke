@@ -15,7 +15,7 @@ pipelineConfig:
         # for more information on valueFrom.
         # Environment variables defined at the top level can be overridden in stages and individual
         # steps.
-        environment:
+        environment: []
         # Options contains other configuration for the pipeline.
         options:
           # containerOptions allows specifying more advanced default configuration for the containers
