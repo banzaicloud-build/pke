@@ -1,8 +1,10 @@
 buldPack: none
+
+extends:
+  import: classic
+  file: go/pipeline.yaml
+
 pipelineConfig:
-  extends:
-    import: classic
-    file: go/pipeline.yaml
   pipelines:
     pullRequest:
       build:
