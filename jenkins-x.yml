@@ -65,13 +65,13 @@ pipelineConfig:
               #   args:
               #     - license-check
 
-              - name: Run linter
-                command: make
-                args:
-                  - lint
+              # - name: Run linter
+              #   command: make
+              #   args:
+              #     - lint
+
               - name: Run tests
                 command: make
-
                 args:
                   - test
               - name: Build
