@@ -59,12 +59,6 @@ pipelineConfig:
               - name: GOARGS
                 value: "-p=2"
             steps:
-              # - name: Check dependency licenses
-              #   command: make
-              #   # args are a YAML array, so can be specified either on multiple lines or in a []
-              #   args:
-              #     - license-check
-
               - name: Run linter
                 command: make
                 args:
