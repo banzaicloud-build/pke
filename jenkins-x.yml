@@ -9,7 +9,7 @@ pipelineConfig:
         # Define a default container image we'll use throughout the pipeline, unless an explicit agent is
         # specified on a stage or step.
         agent:
-          image: "goland" # or "maven" - this means "use the maven pod template"
+          image: "golang" # or "maven" - this means "use the maven pod template"
         # Environment variables are either static key/value pairs or Kubernetes valueFrom EnvVarSources.
         # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.14/#envvarsource-v1-core
         # for more information on valueFrom.
