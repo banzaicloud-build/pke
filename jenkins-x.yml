@@ -42,7 +42,7 @@ pipelineConfig:
             unit: minutes
         # A pipeline must contain at least one stage, and each stage must have a unique name.
         stages:
-          - name: X
+          - name: Test
             # agent, options, and environment are valid on stages as well. For the parents of nested
             # sequential or parallel stages, their children inherit the parent's agent, options,
             # and environment.
@@ -55,12 +55,10 @@ pipelineConfig:
               #       memory: 256Mi
             # A stage must contain at least one of "steps", "stages", or "parallel"
             # Steps must contain at least one command to be executed or a loop.
-            parallel:
-              - name: Build
-                command: make
-                # args are a YAML array, so can be specified either on multiple lines or in a []
-                args:
-                  - build
+            environment:
+              - name: GOARGS
+                value: "-p=2"
+            steps:
               - name: Check dependency licenses
                 command: make
                 # args are a YAML array, so can be specified either on multiple lines or in a []
@@ -73,7 +71,11 @@ pipelineConfig:
                   - lint
               - name: Run tests
                 command: make
-                environment:
-                   GOARGS: "-p=2"
+
                 args:
                   - test
+              - name: Build
+                command: make
+                # args are a YAML array, so can be specified either on multiple lines or in a []
+                args:
+                  - build
