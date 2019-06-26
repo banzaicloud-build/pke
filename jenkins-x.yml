@@ -58,6 +58,8 @@ pipelineConfig:
             environment:
               - name: GOARGS
                 value: "-p=2"
+              - name: GOPROXY
+                value: http://jx-jx-app-athens-athens-proxy
             steps:
               # - name: Check dependency licenses
               #   command: make
