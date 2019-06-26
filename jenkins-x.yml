@@ -1,3 +1,5 @@
+buildPack: none
+
 pipelineConfig:
   pipelines:
     pullRequest:
